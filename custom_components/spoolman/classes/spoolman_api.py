@@ -46,12 +46,18 @@ class SpoolmanAPI:
     async def get_spools(self, params):
         """Return a list of all spools."""
         _LOGGER.debug("SpoolmanAPI: get_spools")
-        url = f"{self.base_url}/spool"
+        spool_url = f"{self.base_url}/spool"
+        location_order_url = f"{self.base_url}/setting/locations_spoolorders"
         if len(params) > 0:
-            url = f"{url}?{self.string_from_dictionary(params)}"
-        async with aiohttp.ClientSession() as session, session.get(url) as response:
+            spool_url = f"{spool_url}?{self.string_from_dictionary(params)}"
+        async with aiohttp.ClientSession() as session, session.get(spool_url) as response, session.get(location_order_url) as location_response:
             response.raise_for_status()
             response = await response.json()
+            location_response.raise_for_status()
+            location_response = await location_response.json().value
+            for spool in response:
+                location_order = location_response[spool.location]
+                spool["location_order"] = location_order.index(spool.id)
             _LOGGER.debug("SpoolmanAPI: get_spools response %s", response)
             return response
 
