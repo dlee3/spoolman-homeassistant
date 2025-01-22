@@ -1,4 +1,4 @@
-## [0.7.1] (2025-01-21)
+## [0.7.1](https://github.com/dlee3/spoolman-homeassistant/compare/main...v0.7.0) (2025-01-21)
 
 ### 🚀 Features
 
