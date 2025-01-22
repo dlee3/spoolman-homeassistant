@@ -1,3 +1,9 @@
+## [0.7.1] (2025-01-21)
+
+### 🚀 Features
+
+* added location spool order to spool info
+  
 ## [0.7.0](https://github.com/Disane87/spoolman-homeassistant/compare/v0.6.0...v0.7.0) (2024-12-16)
 
 ### 🚀 Features
